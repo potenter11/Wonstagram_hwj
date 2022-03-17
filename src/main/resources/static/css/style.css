@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+#wrap {
+	width: 1300px;
+	height: 800px;
+	margin: auto;	
+}
+
+header{
+	height: 100px;
+}
+
+section > .join-box {
+	width: 500px;
+	background-color: #dddddd;	
+}
+
+.login-box {
+	height: 50px;
+	width: 500px;
+	background-color: #dddddd;
+} 
+
+
+footer {
+	height: 100px;
+}
