@@ -21,29 +21,32 @@
 		<header>
 		</header>
 		
-		<section class="bg-warning">
-			<div class="justify-content-center align-items-center">
+		<section class="d-flex justify-content-center align-items-center">
+			<div>
 				<div class="join-box my-5">
-					<div class="d-flex mt-3">
-						<input type="text" class="form-control col-9" placeholder="사용자 이름 또는 이메일">
-						<button type="button" class="btn btn-primary btn-block col-3">중복확인</button>
+					<div class="m-5">
+						<div class="d-flex">
+							<input type="text" class="form-control col-9 mt-5" placeholder="사용자 이름 또는 이메일">
+							<button type="button" class="btn btn-primary btn-block col-3 mt-5">중복확인</button>
+						</div>
+						<input type="text" class="form-control mt-3" placeholder="성명">
+						<input type="text" class="form-control mt-3" placeholder="전화번호">
+						<input type="password" class="form-control mt-3" placeholder="비밀번호">
+						
+						<button type="button" class="btn btn-primary btn-block my-5">가입하기</button>
 					</div>
-					<input type="text" class="form-control mt-3" placeholder="성명">
-					<input type="text" class="form-control mt-3" placeholder="전화번호">
-					<input type="password" class="form-control mt-3" placeholder="비밀번호">
-					
-					<button type="button" class="btn btn-primary btn-block my-5">가입하기</button>		
+
 				</div>
 				
-				<div class="d-flex login-box justify-content-center align-items-end">
-					계정이 있으신가요? <a href="#">로그인</a>
+				<div class="d-flex login-box justify-content-center align-items-center">
+					계정이 있으신가요? <a href="#"> 로그인</a>
 				</div>
 			</div>
 		
 		</section>
 		
 		<footer class="d-flex justify-content-center align-items-center">
-			<small>Copyright 2022. Onestagram all rights reserved.</small>
+			<small>Copyright 2022. wonstagram all rights reserved.</small>
 		</footer>
 	
 	</div>

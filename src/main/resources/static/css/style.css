@@ -10,7 +10,8 @@ header{
 	height: 100px;
 }
 
-section > .join-box {
+.join-box {
+	height: 380px;
 	width: 500px;
 	background-color: #dddddd;	
 }
