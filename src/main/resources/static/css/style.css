@@ -10,6 +10,10 @@ header{
 	height: 100px;
 }
 
+section > article {
+	height: 630px;
+}
+
 .join-box {
 	height: 430px;
 	width: 500px;
@@ -22,6 +26,9 @@ header{
 	background-color: #dddddd;
 } 
 
+.text_input {
+	background-color: #dddddd;
+}
 
 footer {
 	height: 100px;
