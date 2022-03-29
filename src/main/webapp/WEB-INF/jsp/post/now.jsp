@@ -14,6 +14,7 @@
 	
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
+</head>
 
 <body>
 	
@@ -25,49 +26,36 @@
 			
 			<article class="d-flex mt-3">
 				
-				<div class="col-6">
-					<div>
-						<c:forEach var="post" items="${postList }" >
-		 				
-		 				<div class="text_input h4 mr-3"><i class="bi bi-person-circle"></i>${post.userName }</div>
-							<div>
-								<img src="${post.imagePath }" class="w-100">
+				<div class="posting text-input col-6">
+				
+					<c:forEach var="postDetail" items="${postList}">
+		 			
+		 			<div class="h4 mr-3"><i class="bi bi-person-circle"></i> ${postDetail.post.userName }</div>
+							
+
+							<div class="imageBox">
+								<img src="${postDetail.post.imagePath }" class="10px">
 			 				</div>
 			 		
-			 			<h4>
-			 				<a href="#" class="likeBtn" data-post-id="${post.id }"><i class="bi bi-heart"></i> </a> 
-			 				<i class="bi bi-chat"></i> 
-			 				<i class="bi bi-send-fill"></i>
-			 			</h4>			 				
-			 		
-			 			<h4><b>좋아요</b> 100개</h4>
-			 			
-			 			<div>
-			 				<span><b>${post.userName }</b></span> <br>
-			 				<span>${post.content }</span>
-			 			</div>
-			 			
-			 			<div class="middle-size m-2">
-							<div class="mt-1">
-								<b>바다</b> 우왁 거기가 어딘가여?
-							</div>
-							<div class="mt-1">
-								<b>신보람</b> 혼자 가니 좋냐?
-							</div>
-							<div class="mt-1">
-								<b>남라</b> 냠냠
-							</div>
-						</div>
-			 			
-			 			<div class="d-flex text-dark mt-3">
-		 					<h4><i class="bi bi-emoji-laughing mr-3"></i> </h4> 
-		 					<input type="text" class="form-control mr-3"  id="commentInput${post.id }"> 
-		 					<button class="btn btn-light mr-3 commentBtn" data-post-id="${post.id }">등록</button>
-			 			</div>
-			 			
-		 			</div>
-		 			</c:forEach>
-		 				
+				 			<h4>
+				 				<i class="bi bi-heart"></i> <a href="#" class="likeBtn" data-post-id="${postDetail.post.id }"> </a>
+				 				<i class="bi bi-chat"></i> 
+				 				<i class="bi bi-send-fill"></i>
+				 			</h4>			 				
+				 		
+				 			<h4><b>좋아요</b> 100개</h4>
+				 			
+				 			<div>
+				 				<span><b> ${postDetail.post.userName }</b></span> <br>
+				 				<span> ${postDetail.post.content }</span>
+				 			</div>
+				 					 			
+				 			<div class="d-flex text-dark mt-3">
+			 					<h4><i class="bi bi-emoji-laughing mr-3"></i> </h4> 
+			 					<input type="text" class="form-control mr-3"  id="commentInput"> 
+			 					<button class="btn btn-light mr-3 commentBtn">등록</button>
+				 			</div> 
+		 					</c:forEach>
 				</div>
 				
 				<div class="col-6">
@@ -168,7 +156,7 @@
 	
 	
 	
-	</script>
+	</script>  
 	
 	
 </body>

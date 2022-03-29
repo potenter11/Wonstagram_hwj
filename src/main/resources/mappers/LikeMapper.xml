@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
 <mapper namespace="com.potenter.instagram.post.like.dao.LikeDAO">
 	
 	<insert id="insertLike" parameterType="map">
@@ -17,5 +20,15 @@
 		)
 	
 	</insert>
-
+	
+	<select id="selectLikeCount" parameterType="int" resultType="int">
+		SELECT 
+			count(*)
+		FROM 
+			`like`
+		WHERE
+			`postId` = #{postId}
+	
+	</select>
+	
 </mapper>

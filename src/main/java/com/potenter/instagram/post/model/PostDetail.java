@@ -1,7 +1,5 @@
 package com.potenter.instagram.post.model;
 
-import java.util.List;
-
 public class PostDetail {
 	
 	private Post post;

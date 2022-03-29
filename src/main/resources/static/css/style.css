@@ -10,8 +10,8 @@ header{
 	height: 100px;
 }
 
-section > article {
-	height: 630px;
+.posting {
+	height: auto;
 }
 
 .join-box {
@@ -26,8 +26,10 @@ section > article {
 	background-color: #dddddd;
 } 
 
-.text_input {
+.text-input {
 	background-color: #dddddd;
+	height: auto;
+	margin: auto;
 }
 
 footer {

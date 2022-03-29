@@ -42,7 +42,7 @@
 				</div>
 				
 				<div class="d-flex login-box justify-content-center align-items-center">
-					계정이 있으신가요? <a href="#"> 로그인</a>
+					계정이 있으신가요? <a href="/user/signin_view"> 로그인</a>
 				</div>
 			</div>
 		

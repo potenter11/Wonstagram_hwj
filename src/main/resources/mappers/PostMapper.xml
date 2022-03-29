@@ -13,7 +13,7 @@
 			, `userName`
 			, `content`
 			, `imagePath`
-			, `creaedAt`
+			, `createdAt`
 			, `updatedAt`		
 		) VALUE (
 			#{userId}

@@ -58,12 +58,12 @@
 				var loginId = $("#loginIdInput").val();
 				var password = $("#passwordInput").val();
 				
-				if(loginId == null || loginId == "") {
+				if(loginId == "") {
 					alert("아이디를 입력해주세요");
 					return ;
 				}
 				
-				if(password == null || password == "") {
+				if(password == "") {
 					alert("비밀번호를 입력해주세요");
 					return ;
 				}
@@ -74,7 +74,7 @@
 					data:{"loginId":loginId, "password":password},
 					success:function(data) {
 						if(data.result == "success") {
-							location.href="/post/now"
+							location.href="/post/posting_now"
 						} else {
 							alert("아이디 비밀번호를 확인하세요");
 						}

@@ -2,6 +2,9 @@ package com.potenter.instagram.post;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.potenter.instagram.post.bo.PostBO;
-import com.potenter.instagram.post.model.Post;
+import com.potenter.instagram.post.model.PostDetail;
 
 @Controller
 @RequestMapping("/post")
@@ -24,9 +27,12 @@ public class PostController {
 	}
 	
 	@GetMapping("/posting_now")
-	public String now(Model model) {
+	public String now(Model model, HttpServletRequest request) {
 		
-		List<Post> postList = postBO.getPostList();
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		
+		List<PostDetail> postList = postBO.getPostList(userId);
 		
 		model.addAttribute("postList", postList);
 		

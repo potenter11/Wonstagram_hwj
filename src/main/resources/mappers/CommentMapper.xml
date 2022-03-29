@@ -22,8 +22,7 @@
 			, #{content}
 			, now()
 			, now()
-		)
-		
+		)		
 	</insert>
 
 </mapper>

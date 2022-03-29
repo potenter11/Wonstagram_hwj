@@ -6,11 +6,18 @@ public class Post {
 	
 	private int id;
 	private int userId;
+	private String userName;
 	private String imagePath;
 	private String content;
 	private Date cratedAt;
 	private Date updatedAt;
 	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public int getId() {
 		return id;
 	}
