@@ -2,7 +2,6 @@
 
 #wrap {
 	width: 1300px;
-	height: 800px;
 	margin: auto;	
 }
 
@@ -11,7 +10,18 @@ header{
 }
 
 .posting {
-	height: auto;
+	height: 600px;
+}
+.posting > .imagebox {
+	height: 300px;	
+}
+
+.friend-box {
+	height: 300px;
+}
+
+.ad-box {
+	height: 300px;
 }
 
 .join-box {

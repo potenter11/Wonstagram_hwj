@@ -39,9 +39,11 @@
 			 		
 			 		<div class="text-input col-4 d-flex justify-content-center align-items-center">
 			 			
+			 	
 			 			<div>
+			 			
 			 				<div>
-				 				<h4 class="mt-3"><i class="bi bi-person-circle mr-3">potenter11 </i></h4>
+				 				<h4 class="mt-3"><i class="bi bi-person-circle mr-3"></i> </h4>
 				 			</div>
 				 			
 				 			<textarea rows="10" cols="50" class="form-control mt-3" placeholder="하고 싶은 말을 적어보세요···" id="contentInput"></textarea>
@@ -51,6 +53,7 @@
 							</div>
 						
 						</div>			 		
+											 	
 			 		</div>
 		 		
 		 	</article>
