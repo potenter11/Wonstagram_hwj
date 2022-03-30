@@ -30,6 +30,7 @@ public class PostController {
 	public String now(Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
+		
 		int userId = (Integer)session.getAttribute("userId");
 		
 		List<PostDetail> postList = postBO.getPostList(userId);

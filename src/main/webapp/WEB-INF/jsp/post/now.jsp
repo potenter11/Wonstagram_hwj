@@ -45,34 +45,38 @@
 			 			</div>
 			 		
 				 		<h4>
-				 			<i class="bi bi-heart"></i> <a href="#" class="likeBtn" data-post-id="${postDetail.post.id }"> </a>
+				 			<c:choose>
+					 			<c:when test="${postDetail.like }">
+					 				<i class="bi bi-heart-fill text-danger"></i>
+					 			</c:when>
+					 			<c:otherwise>
+					 				<a href="#" class="likeBtn text-dark" data-post-id="${postDetail.post.id }"><i class="bi bi-heart"></i>  </a>
+					 			</c:otherwise>
+				 			</c:choose>
 				 			<i class="bi bi-chat"></i> 
 				 			<i class="bi bi-send-fill"></i>
 			 			</h4>			 				
 				 		
-			 			<h4><b>좋아요</b> 100개</h4>
+			 			<span><b>좋아요</b> ${postDetail.likeCount}개 </span>
 				 			
 			 			<div>
 			 				<span><b> ${postDetail.post.userName }</b></span> <br>
 			 				<span> ${postDetail.post.content }</span>
 			 			</div>
-				 				
-				 		<div class="my-1">
-							<div class="mt-1">
-								<b>아이유</b> 거기가 어딘가여?
-							</div>
-							<div class="mt-1">
-								<b>황재웅</b> 나도...데려가
-							</div>
-							<div class="mt-1">
-								<b>강민경</b> 냠냠ㅎㅎ
-							</div>
-						</div>		
-				 					 			
+						
+						<!-- 댓글 리스트 -->				 	
+				 		<div class="mt-3">
+				 			<c:forEach var="comment" items="${postDetail.commentList }">
+								<div class="mt-1">
+									<b>${comment.userName }</b> ${comment.comment }
+								</div>
+							</c:forEach>
+						</div>
+						
 			 			<div class="d-flex text-dark my-2">
 		 					<h4><i class="bi bi-emoji-laughing mr-3"></i> </h4> 
-		 					<input type="text" class="form-control mr-3"  id="commentInput"> 
-		 					<button class="btn btn-light mr-3 commentBtn">등록</button>
+		 					<input type="text" class="form-control mr-3"  id="commentInput${postDetail.post.id }"> 
+		 					<button class="btn btn-light mr-3 commentBtn" data-post-id="${postDetail.post.id }">등록</button>
 			 			</div> 
 						
 						<hr>	
@@ -130,7 +134,7 @@
 				$.ajax({
 					type:"post",
 					url:"/post/comment/create",
-					data:{"postId":postId, "content":comment},
+					data:{"postId":postId, "comment":comment},
 					success:function(data) {
 						if(data.result == "success") {
 							location.reload();
@@ -151,8 +155,7 @@
 				e.preventDefault();
 				
 				let postId = $(this).data("post-id");
-				
-				
+								
 				$.ajax({
 					type:"get",
 					url:"/post/like",

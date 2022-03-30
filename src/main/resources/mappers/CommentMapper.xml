@@ -10,7 +10,7 @@
 			`postId`
 			, `userId`
 			, `userName`
-			, `content`
+			, `comment`
 			, `createdAt`
 			, `updatedAt`
 		)
@@ -19,11 +19,26 @@
 			#{postId}
 			, #{userId}
 			, #{userName}
-			, #{content}
+			, #{comment}
 			, now()
 			, now()
 		)		
 	</insert>
+	
+	<select id="selectComment" parameterType="int" resultType="com.potenter.instagram.post.comment.model.Comment">
+		SELECT
+			`id`
+			, `postId`
+			, `userId`
+			, `userName`
+			, `comment`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`comment`
+		WHERE
+			`postId`= #{postId}
+	</select>
 
 </mapper>
 

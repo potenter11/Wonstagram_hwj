@@ -44,4 +44,11 @@ public class LikeRestController {
 		
 	}
 	
+//	@GetMapping("like_cancel")
+//	public Map<String, String> like() {
+//		
+//	}
+	
+		
+	
 }
