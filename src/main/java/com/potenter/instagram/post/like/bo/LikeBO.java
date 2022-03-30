@@ -31,10 +31,8 @@ public class LikeBO {
 		return (count != 0);		
 	}
 	
-	public boolean isNotLike(int postId, int userId) {
-		int count = likeDAO.deleteLikeCountByUserId(postId, userId);
-		
-		return (count != 0);
+	public int notLike(int postId, int userId) {
+		return likeDAO.deleteLikeCountByUserId(postId, userId);
 	}
 	
 }

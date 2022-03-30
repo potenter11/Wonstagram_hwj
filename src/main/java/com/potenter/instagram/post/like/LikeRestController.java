@@ -44,10 +44,27 @@ public class LikeRestController {
 		
 	}
 	
-//	@GetMapping("like_cancel")
-//	public Map<String, String> like() {
-//		
-//	}
+	@GetMapping("like_cancel")
+	public Map<String, String> notLike(
+			@RequestParam("postId") int postId,
+			HttpServletRequest request) {
+	
+		HttpSession session = request.getSession();
+		
+		int userId = (Integer)session.getAttribute("userId");
+		
+		int count = likeBO.addLike(postId, userId);
+		
+		Map<String, String> result = new HashMap<>();
+		
+		if(count == 1) {
+			result.put("result", "success");
+		} else {
+			result.put("result", "fail");
+		}
+		
+		return result;
+	}
 	
 		
 	
