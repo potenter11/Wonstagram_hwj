@@ -12,6 +12,10 @@ header{
 .posting {
 	height: 600px;
 }
+.posting > .font {
+	font-size: 20px;
+}
+
 .posting > .imagebox {
 	height: 300px;	
 }

@@ -32,7 +32,7 @@ public class LikeBO {
 	}
 	
 	public int notLike(int postId, int userId) {
-		return likeDAO.deleteLikeCountByUserId(postId, userId);
+		return likeDAO.deleteLike(postId, userId);
 	}
 	
 }

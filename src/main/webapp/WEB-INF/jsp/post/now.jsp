@@ -34,31 +34,41 @@
 				<div class="posting text-input col-6">
 				
 					<c:forEach var="postDetail" items="${postList}">
-		 			
-		 				<div class="h4 my-3 mr-3">
-		 					<i class="bi bi-person-circle"></i> ${postDetail.post.userName }
+						
+						<!-- 글 포스팅 상단(이름 및 글수정 및 삭제) -->		 			
+		 				<div class="font d-flex justify-content-between my-3">
+		 					<div>
+		 						<i class="bi bi-person-circle"></i> <span>${postDetail.post.userName } </span>
+		 					</div>
+		 					<div>
+	 							<a href="#" class="text-dark" data-toggle="modal" data-target="#exampleModalCenter"><i class="bi bi-three-dots"></i></a>
+		 					</div>
 		 				</div>
 							
-
+						<!-- 글 포스팅 이미지 -->
 						<div class="imageBox mb-3">
 							<img src="${postDetail.post.imagePath }" class="w-100">
 			 			</div>
-			 		
+			 			
+			 			<!-- 좋아요 버튼 및 댓글 버튼 -->
 				 		<h4>
 				 			<c:choose>
 					 			<c:when test="${postDetail.like }">
-					 				<i class="bi bi-heart-fill text-danger"></i>
+					 				<%-- 좋아요 누른 버튼 빨갛고 가득찬 하트 --%>
+					 				<a href="#" class="likeBtn2" data-post-id="${postDetail.post.id }"><i class="bi bi-heart-fill text-danger"></i> </a>
 					 			</c:when>
 					 			<c:otherwise>
+					 				<%-- 좋아요 아닌 비어있는 하트 --%>
 					 				<a href="#" class="likeBtn text-dark" data-post-id="${postDetail.post.id }"><i class="bi bi-heart"></i>  </a>
 					 			</c:otherwise>
 				 			</c:choose>
 				 			<i class="bi bi-chat"></i> 
-				 			<i class="bi bi-send-fill"></i>
 			 			</h4>			 				
 				 		
+				 		<!-- 좋아요 개수 -->
 			 			<span><b>좋아요</b> ${postDetail.likeCount}개 </span>
 				 			
+				 		<!-- 글 포스팅 글쓴이 및 내용 -->	
 			 			<div>
 			 				<span><b> ${postDetail.post.userName }</b></span> <br>
 			 				<span> ${postDetail.post.content }</span>
@@ -73,6 +83,7 @@
 							</c:forEach>
 						</div>
 						
+						<!-- 댓글 인풋창 -->
 			 			<div class="d-flex text-dark my-2">
 		 					<h4><i class="bi bi-emoji-laughing mr-3"></i> </h4> 
 		 					<input type="text" class="form-control mr-3"  id="commentInput${postDetail.post.id }"> 
@@ -87,7 +98,8 @@
 				<div class="col-6">
 					
 					<div class="friend-box d-flex justify-content-center align-items-center border mb-3">
-
+						
+						<!-- 추천 친구 -->
 						<div>
 							<h4>회원님을 위한 추천 친구</h4>
 							
@@ -99,6 +111,7 @@
 
 					</div>
 					
+					<!-- 광고창 -->
 					<div class="ad-box d-flex justify-content-center align-items-center border">
 						<div>
 							ad-link
@@ -111,10 +124,29 @@
 		</section>
 				
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
-	
+
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+
+	    	<div class="modal-body text-center">
+	      		<a href="#" class="text-success">수정하기</a>	
+	      	</div>
+			
+			<div class="modal-body text-center">
+	      		<a href="#" class="text-danger">삭제하기</a>
+	      	</div>
+
+	    </div>
+	  </div>
 	</div>
 	
 	
+
+
 	
 	<script>
 	
@@ -152,7 +184,7 @@
 			});
 			
 			$(".likeBtn").on("click", function(e) {
-				e.preventDefault();
+				e.preventDefault(); // a tag의 기능을 취소시키는 메소드
 				
 				let postId = $(this).data("post-id");
 								
@@ -170,6 +202,31 @@
 					},
 					error:function() {
 						alert("좋아요 에러");
+					}
+					
+				});
+							
+			});
+			
+			$(".likeBtn2").on("click", function(e) {
+				e.preventDefault();
+				
+				let postId = $(this).data("post-id");
+								
+				$.ajax({
+					type:"get",
+					url:"/post/like_cancel",
+					data:{"postId":postId},
+					success:function(data) {
+						
+						if(data.result == "success") {
+							location.reload();
+						} else {
+							alert("좋아요 취소 실패");
+						}
+					},
+					error:function() {
+						alert("좋아요 취소 에러");
 					}
 					
 				});

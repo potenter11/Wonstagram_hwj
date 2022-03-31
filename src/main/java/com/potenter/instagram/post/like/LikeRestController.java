@@ -50,17 +50,16 @@ public class LikeRestController {
 			HttpServletRequest request) {
 	
 		HttpSession session = request.getSession();
-		
 		int userId = (Integer)session.getAttribute("userId");
 		
-		int count = likeBO.addLike(postId, userId);
+		int count = likeBO.notLike(postId, userId);
 		
 		Map<String, String> result = new HashMap<>();
 		
-		if(count == 1) {
-			result.put("result", "success");
-		} else {
+		if(count == 0) {
 			result.put("result", "fail");
+		} else {
+			result.put("result", "success");
 		}
 		
 		return result;

@@ -40,8 +40,9 @@
 			`postId` = #{postId} AND `userId` = #{userId}	
 	</select>
 	
-	<delete id="deleteLikeCountByUserId" parameterType="map">
-		DELETE FROM `like`
+	<delete id="deleteLike" parameterType="map">
+		DELETE FROM 
+			`like`
 		WHERE 
 			`postId` = #{postId} AND `userId` = #{userId}	
 	</delete>
