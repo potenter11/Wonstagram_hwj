@@ -65,15 +65,23 @@ public class FileManagerService {
 					
 		}
 		
+		// 파일 삭제 
 		public static boolean removeFile(String filePath) {
 			
-			// 실제파일 경로 : D:\\WonJunBackEnd\\Spring\\spring_potenter\\instagram\\upload\\images/
-			// FILE_UPLOAD_PATH + 6_12912099/asdf.jpg
+			if(filePath == null) {
+				logger.error("FileManagerService-removeFile : 파일 없음");
+				
+				return false;
+			}
 			
+			// filePath : /images/2_359324532/test.png
+			// 실제파일 경로 : D:\\WonJunBackEnd\\Spring\\spring_potenter\\instagram\\upload\\images\\2_359324532/test.png
+			
+			// FILE_UPLOAD_PATH + 2_359324532/test.png
 			// 실제 파일 경로
-			String realFilePath = FILE_UPLOAD_PATH + filePath.replace("/images", "");
+			String realFilePath = FILE_UPLOAD_PATH + filePath.replace("/images/", "");
 			
-			// 파일 삭제
+			// 파일 삭제 
 			Path path = Paths.get(realFilePath);
 			// 파일이 있는지 확인
 			if(Files.exists(path)) {
@@ -85,9 +93,10 @@ public class FileManagerService {
 					return false;
 				}
 			}
-			// 실제파일 경로 : D:\\WonJunBackEnd\\Spring\\spring_potenter\\memo\\upload\\images/6_12912099/asdf.jpg
-			// 디렉토리 삭제
-			// 디렉토리 경로 : D:\\WonJunBackEnd\\Spring\\spring_potenter\\memo\\upload\\images/6_12912099/
+			
+			// 실제파일 경로 : D:D:\\WonJunBackEnd\\Spring\\spring_potenter\\instagram\\upload\\images\\2_359324532/test.png
+			// 디렉토리 삭제 
+			// 디렉토리 경로 : D:\\WonJunBackEnd\\Spring\\spring_potenter\\instagram\\upload\\images\\2_359324532
 			
 			path = path.getParent();
 			
@@ -96,12 +105,13 @@ public class FileManagerService {
 				try {
 					Files.delete(path);
 				} catch (IOException e) {
-					logger.error("FileManagerService-removeFile : 파일 없음");
+					logger.error("FileManagerService-removeFile : 디렉토리 삭제 실패");
 					e.printStackTrace();
 					return false;
 				}
 			}
-			return true;			
+						
+			return true;
 		}
 		
 		

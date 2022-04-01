@@ -35,6 +35,29 @@ public class PostBO {
 		return postDAO.insertPost(userId, userName, filePath, content);
 	}
 	
+	public int deletePost(int postId, int userId) {
+		
+		// postId 기준으로 post 객체 불러오기
+		Post post = postDAO.selectPost(postId);
+		
+		if(post.getUserId() == userId) {
+			
+			// 파일 삭제
+			FileManagerService.removeFile(post.getImagePath());
+			
+			// 좋아요 삭제
+			likeBO.deleteLikeByPostId(postId);
+			
+			// 댓글 삭제
+			commentBO.deleteCommentByPostId(postId);
+			
+			return postDAO.deletePost(postId);	
+		}
+		
+		return 0;	
+	}
+	
+	
 	public List<PostDetail> getPostList(int userId) {
 		
 		List<Post> postList = postDAO.selectPostList();

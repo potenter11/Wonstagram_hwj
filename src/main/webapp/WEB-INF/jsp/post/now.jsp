@@ -41,7 +41,7 @@
 		 						<i class="bi bi-person-circle"></i> <span>${postDetail.post.userName } </span>
 		 					</div>
 		 					<div>
-	 							<a href="#" class="text-dark" data-toggle="modal" data-target="#exampleModalCenter"><i class="bi bi-three-dots"></i></a>
+	 							<a href="#" class="moreBtn text-dark" data-post-id="${postDetail.post.id }" data-toggle="modal" data-target="#exampleModalCenter"><i class="bi bi-three-dots"></i></a>
 		 					</div>
 		 				</div>
 							
@@ -127,26 +127,21 @@
 
 	</div>
 
+
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
 
 	    	<div class="modal-body text-center">
-	      		<a href="#" class="text-success">수정하기</a>	
-	      	</div>
-			
-			<div class="modal-body text-center">
-	      		<a href="#" class="text-danger">삭제하기</a>
+	      		<button type="button" class="btn btn-primary">수정하기</button>
+	      		<button type="button" class="btn btn-danger" id="deleteBtn">삭제하기</button>
 	      	</div>
 
 	    </div>
 	  </div>
 	</div>
 	
-	
-
-
 	
 	<script>
 	
@@ -233,14 +228,45 @@
 							
 			});
 			
+			$(".moreBtn").on("click", function(e){
+				e.preventDefault();
+			
+				let postId = $(this).data("post-id");
+				
+				$("#deleteBtn").data("post-id", postId);
+				// <a href ="" data-post-id="3">
+			
+			});
+						
+			$("#deleteBtn").on("click", function(e) {
+				e.preventDefault();				
+				
+				let postId = $(this).data("post-id");
+				
+				$.ajax({
+					type:"get",
+					url:"/post/delete",
+					data:{"postId":postId},
+					success:function(data) {
+						if(data.result == "success") {
+							location.reload();
+						} else {
+							alert("삭제 실패");
+						}
+					}, 
+					error:function() {
+						alert("삭제 에러");
+					}
+								
+				});
+						
+			});
 			
 			
-		});
-	
-	
+		});	
 	
 	</script>  
-	
-	
+
 </body>
+	
 </html>
