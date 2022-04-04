@@ -234,6 +234,8 @@
 				let postId = $(this).data("post-id");
 				
 				$("#deleteBtn").data("post-id", postId);
+				$("#updateBtn").data("post-id", postId);
+				
 				// <a href ="" data-post-id="3">
 			
 			});
@@ -276,8 +278,9 @@
 				e.preventDefault();				
 				
 				let postId = $(this).data("post-id");
+						
 				
-				location.href="/post/posting_update"						
+				location.href="/post/posting_update?id="+postId;						
 			});						
 					
 		});	

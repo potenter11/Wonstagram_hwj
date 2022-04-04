@@ -54,6 +54,21 @@
 			`id` = #{postId} 	
 	</select>
 	
+	<select id="selectPostById" parameterType="int" resultType="com.potenter.instagram.post.model.Post">
+		SELECT 
+			`id`
+			, `userId`
+			, `userName`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`post`
+		WHERE 
+			`id` = #{id} 	
+	</select>
+	
 	<delete id="deletePost">
 		DELETE FROM `post`
 		WHERE
@@ -61,7 +76,7 @@
 	</delete>
 	
 	<update id="updatePost" parameterType="map">
-		UPDATE FROM `post`
+		UPDATE `post`
 		SET
 			`imagePath` = #{imagePath}
 			, `content` = #{content}

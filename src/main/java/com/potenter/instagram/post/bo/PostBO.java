@@ -58,7 +58,7 @@ public class PostBO {
 	}
 	
 	public Post selectPost(int id) {
-		return postDAO.selectPost(id);
+		return postDAO.selectPostById(id);
 	}
 	
 	public int updatePost(int postId, int userId, String imagePath, String content) {

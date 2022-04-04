@@ -27,8 +27,6 @@
 			<h2 class="text-center my-3">새 게시물 만들기</h2>
 		 	
 		 	<article class="d-flex">
-					
-					<c:forEach var="postDetail" items="${postList}">
 							 	
 			 		<div class="d-flex justify-content-center col-8">
 			 			
@@ -36,6 +34,10 @@
 			 				<a href="#" id="imageIcon"><i class="bi bi-image text-dark"></i> </a>
 			 				<input type="file" id="fileInput" class="d-none">
 			 			</div>
+			 			
+			 			<c:if test="${not empty post.imagePath }" >
+							<img src="${post.imagePath }">
+						</c:if>
 			 			
 			 		</div>
 			 		
@@ -47,17 +49,15 @@
 				 				<h4 class="mt-3"><i class="bi bi-person-circle mr-3"></i> </h4>
 				 			</div>
 				 			
-				 			<textarea rows="10" cols="50" class="form-control mt-3" placeholder="하고 싶은 말을 적어보세요···" id="contentInput">${postDetail.post.content }</textarea>
+				 			<textarea rows="10" cols="50" class="form-control mt-3" placeholder="하고 싶은 말을 적어보세요···" id="contentInput">${post.content }</textarea>
 							
 							<div class="d-flex justify-content-end align-items-end">	 		
-					 			<button class="btn btn-info my-3" type="button" id="uploadBtn">수정하기</button>
+					 			<button class="btn btn-info my-3" type="button" id="updateBtn" data-post-id="${post.id }">수정하기</button>
 							</div>
 
 						</div>			 		
 										 	
 			 		</div>
-		
-					</c:forEach>
 					
 		 	</article>
 		
@@ -66,6 +66,62 @@
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	
 	</div>
+	
+	<script>
+		
+		$(document).ready(function(){
+			
+			$("#imageIcon").on("click", function() {
+				// fileInput 클릭된 효과
+				$("#fileInput").click();
+			});
+			
+			$("#updateBtn").on("click", function(){
+				
+				let imagePath = $("#fileInput").val();
+				let content = $("#contentInput").val().trim();
+				let postId = $(this).data("post-id");
+				
+				
+				if(content == "") {
+					alert("내용을 입력하세요");
+					return ;
+				}
+				
+				<%--if($("#fileInput")[0].files.length == 0) {
+					alert("파일을 선택해주세요");
+					return;
+				} --%>
+				
+				
+				$.ajax({
+					type:"get",
+					url:"/post/update",
+					data:{"postId":postId, "imagePath":imagePath, "content":content},
+					success:function(data) {
+						
+						if(data.result == "success") {
+							alert("수정 성공");
+							location.href="/post/posting_now";
+						} else {
+							alert("수정 실패");
+						}
+					},
+					error:function() {
+						alert("수정 에러");	
+					}
+				});
+						
+				
+			});
+			
+			
+		});
+	
+	
+	
+	
+	</script>
 
 </body>
 </html>

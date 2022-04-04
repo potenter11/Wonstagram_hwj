@@ -25,7 +25,8 @@ public interface PostDAO {
 			@Param("imagePath") String imagePath,
 			@Param("content") String content);
 	
-	public Post selectPost(@Param("id") int id);
-	
+	public Post selectPost(@Param("postId") int postId);
+		
+	public Post selectPostById(@Param("id") int id);
 	
 }
