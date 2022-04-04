@@ -87,7 +87,7 @@
 			 			<div class="d-flex text-dark my-2">
 		 					<h4><i class="bi bi-emoji-laughing mr-3"></i> </h4> 
 		 					<input type="text" class="form-control mr-3"  id="commentInput${postDetail.post.id }"> 
-		 					<button class="btn btn-light mr-3 commentBtn" data-post-id="${postDetail.post.id }">등록</button>
+		 					<button class="btn btn-secondary mr-3 commentBtn" data-post-id="${postDetail.post.id }">등록</button>
 			 			</div> 
 						
 						<hr>	
@@ -134,7 +134,7 @@
 	    <div class="modal-content">
 
 	    	<div class="modal-body text-center">
-	      		<button type="button" class="btn btn-primary">수정하기</button>
+	      		<button type="button" class="btn btn-primary" id="updateBtn">수정하기</button>
 	      		<button type="button" class="btn btn-danger" id="deleteBtn">삭제하기</button>
 	      	</div>
 
@@ -243,26 +243,43 @@
 				
 				let postId = $(this).data("post-id");
 				
-				$.ajax({
-					type:"get",
-					url:"/post/delete",
-					data:{"postId":postId},
-					success:function(data) {
-						if(data.result == "success") {
-							location.reload();
-						} else {
-							alert("삭제 실패");
+				var answer = confirm("이 글을 삭제하시겠습니까?");
+				
+				if(answer == true) {
+					
+					$.ajax({
+						type:"get",
+						url:"/post/delete",
+						data:{"postId":postId},
+						success:function(data) {
+							
+							if(data.result == "success") {
+								location.reload();
+							} else {
+								alert("삭제 실패");
+							}
+						}, 
+						error:function() {
+							alert("삭제 에러");
 						}
-					}, 
-					error:function() {
-						alert("삭제 에러");
-					}
-								
-				});
-						
+									
+					});
+					
+				} else {
+					alert("삭제 취소");
+					location.reload();
+				}
+
 			});
 			
-			
+			$("#updateBtn").on("click", function(e) {
+				e.preventDefault();				
+				
+				let postId = $(this).data("post-id");
+				
+				location.href="/post/posting_update"						
+			});						
+					
 		});	
 	
 	</script>  

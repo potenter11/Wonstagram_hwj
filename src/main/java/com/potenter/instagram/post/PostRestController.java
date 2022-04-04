@@ -68,6 +68,28 @@ public class PostRestController {
 		return result;
 	}
 
+	@GetMapping("update")
+	public Map<String, String> update(
+			@RequestParam("postId") int postId,
+			@RequestParam("imagePath") String imagePath,
+			@RequestParam("content") String content,
+			HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		
+		int count = postBO.updatePost(postId, userId, imagePath, content);
+		
+		Map<String, String> result = new HashMap<>();
+		
+		if(count == 1) {
+			result.put("result", "success");
+		} else {
+			result.put("result", "fail");
+		}
+		
+		return result;
+	}
 	
 	
 	

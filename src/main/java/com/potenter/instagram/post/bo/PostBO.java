@@ -57,6 +57,22 @@ public class PostBO {
 		return 0;	
 	}
 	
+	public Post selectPost(int id) {
+		return postDAO.selectPost(id);
+	}
+	
+	public int updatePost(int postId, int userId, String imagePath, String content) {
+		
+		Post post = postDAO.selectPost(postId);
+		
+		if(post.getUserId() == userId) {
+			
+			return postDAO.updatePost(postId, imagePath, content);
+		}
+		
+		return 0;
+	}
+	
 	
 	public List<PostDetail> getPostList(int userId) {
 		

@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.potenter.instagram.post.bo.PostBO;
+import com.potenter.instagram.post.model.Post;
 import com.potenter.instagram.post.model.PostDetail;
 
 @Controller
@@ -24,6 +26,16 @@ public class PostController {
 	@GetMapping("/posting_create")
 	public String posting() {
 		return "post/creating";
+	}
+	
+	@GetMapping("/posting_update")
+	public String updatePosting(@RequestParam("id") int id, Model model) {
+		
+		Post post = postBO.selectPost(id);
+		
+		model.addAttribute("post", post);
+		
+		return "post/update";
 	}
 	
 	@GetMapping("/posting_now")

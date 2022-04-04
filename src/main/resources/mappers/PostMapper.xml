@@ -39,12 +39,6 @@
 		ORDER BY `id` DESC
 	</select>
 	
-	<delete id="deletePost">
-		DELETE FROM `post`
-		WHERE
-			`id` = #{postId}
-	</delete>
-	
 	<select id="selectPost" parameterType="int" resultType="com.potenter.instagram.post.model.Post">
 		SELECT 
 			`id`
@@ -58,7 +52,24 @@
 			`post`
 		WHERE 
 			`id` = #{postId} 	
-		</select>
+	</select>
+	
+	<delete id="deletePost">
+		DELETE FROM `post`
+		WHERE
+			`id` = #{postId}
+	</delete>
+	
+	<update id="updatePost" parameterType="map">
+		UPDATE FROM `post`
+		SET
+			`imagePath` = #{imagePath}
+			, `content` = #{content}
+			, `updatedAt` = now()
+		WHERE
+			`id` = #{postId}	
+	</update>	
+		
 	
 	
 </mapper>  
